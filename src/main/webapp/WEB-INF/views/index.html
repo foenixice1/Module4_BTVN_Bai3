@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        td {
+            font-size: 16px;
+            font-family: Tahoma;
+            text-align: center;
+            color: black;
+            background-color: white;
+        }
+
+        tr {
+            background-color: gray;
+            color: white;
+        }
+
+    </style>
+</head>
+<body style="
+    background: bisque;
+">
+<div th:replace="/layout :: head"></div>
+<h1 style="text-align: center">Product</h1>
+<br>
+<p>
+    <a th:href="@{create}">
+        Add new product
+    </a>
+</p>
+<table style="color: blue" ; border="1px" id="products">
+    <thead>
+    <th colspan="7">
+        <h1 style="text-align: center">Product</h1>
+    </th>
+    </tr>
+    <tr>
+        <td width="300px" height="60px"><b>ID</b></td>
+        <td width="300px" height="60px"><b>Name</b></td>
+        <td width="300px" height="60px"><b>Color</b></td>
+        <td width="300px" height="60px"><b>Price</b></td>
+        <td width="300px" height="60px"><b>Type</b></td>
+        <td colspan="2" width="300px" height="60px"><b>Actison</b></td>
+
+
+    </tr>
+    </thead>
+    <div>
+        <tbody>
+        <tr th:each="sp,loop : ${list}">
+            <td th:text="${sp.id}"></td>
+            <td th:text="${sp.ten}"></td>
+            <td th:text="${sp.mau}"></td>
+            <td th:text="${sp.gia}"></td>
+            <td th:text="${sp.getLoaiSP()}"></td>
+            <td><a th:href="@{/edit{index}(index=${loop.index})}">edit</a></td>
+            <td><a th:href="@{/{id}/delete(id=${loop.index})}">delete</a></td>
+        </tr>
+        </tbody>
+    </div>
+</table>
+<a th:href="@{/product}">
+    Back to customer list
+</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
